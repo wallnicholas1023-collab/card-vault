@@ -1,0 +1,61 @@
+type UserId = principal;
+type Timestamp = int;
+type SportCard = 
+ record {
+   condition: Condition;
+   currentValue: float64;
+   dateAdded: Timestamp;
+   id: nat;
+   notes: opt text;
+   owner: UserId;
+   playerName: text;
+   purchasePrice: float64;
+   sport: text;
+   team: text;
+   year: nat;
+ };
+type PriceEntry = 
+ record {
+   cardId: nat;
+   date: Timestamp;
+   estimatedValue: float64;
+   id: nat;
+   note: opt text;
+ };
+type PortfolioStats = 
+ record {
+   gainLoss: float64;
+   totalCards: nat;
+   totalCost: float64;
+   totalValue: float64;
+ };
+type PortfolioSnapshot = 
+ record {
+   date: Timestamp;
+   totalValue: float64;
+ };
+type Condition = 
+ variant {
+   Excellent;
+   Fair;
+   Good;
+   Mint;
+   NearMint;
+   Poor;
+ };
+service : {
+  addCard: (playerName: text, sport: text, team: text, year: nat, condition:
+   Condition, purchasePrice: float64, currentValue: float64, notes:
+   opt text) -> (nat);
+  addPriceEntry: (cardId: nat, estimatedValue: float64, note: opt text) ->
+   (nat);
+  deleteCard: (id: nat) -> (bool);
+  getCard: (id: nat) -> (opt SportCard) query;
+  getCards: () -> (vec SportCard) query;
+  getPortfolioHistory: () -> (vec PortfolioSnapshot) query;
+  getPortfolioStats: () -> (PortfolioStats) query;
+  getPriceHistory: (cardId: nat) -> (vec PriceEntry) query;
+  updateCard: (id: nat, playerName: text, sport: text, team: text, year: 
+   nat, condition: Condition, purchasePrice: float64, notes: opt text) ->
+   (bool);
+}

@@ -1,0 +1,70 @@
+// Version: 1.0.0
+type Condition__771405089 =
+  {#Excellent; #Fair; #Good; #Mint; #NearMint; #Poor};
+type Data__791452850<K, V> =
+  {var count : Nat__490723111; kvs : [var ?(K, V)]};
+type Internal__8484328<K, V> =
+  {children : [var ?Node__46230540<K, V>]; data : Data__791452850<K, V>};
+type Leaf__809889148<K, V> = {data : Data__791452850<K, V>};
+type List__415060402<T> = List__790383201<T>;
+type List__790383201<T> =
+  {
+    var blockIndex : Nat__490723111;
+    var blocks : [var [var ?T]];
+    var elementIndex : Nat__490723111
+  };
+type Nat__490723111 = Nat__920180692;
+type Nat__920180692 = Nat;
+type Node__46230540<K, V> =
+  {#internal : Internal__8484328<K, V>; #leaf : Leaf__809889148<K, V>};
+type PortfolioSnapshot__588235282 =
+  {date : Timestamp__330920694; totalValue : Float};
+type PriceEntry__827917434 =
+  {
+    cardId : Nat;
+    date : Timestamp__330920694;
+    estimatedValue : Float;
+    id : Nat;
+    note : ?Text
+  };
+type SportCard__1018253845 =
+  {
+    condition : Condition__771405089;
+    currentValue : Float;
+    dateAdded : Timestamp__330920694;
+    id : Nat;
+    notes : ?Text;
+    owner : UserId__678712279;
+    playerName : Text;
+    purchasePrice : Float;
+    sport : Text;
+    team : Text;
+    year : Nat
+  };
+type Timestamp__301639476 = Int;
+type Timestamp__330920694 = Timestamp__301639476;
+type UserId__158757552 = Principal;
+type UserId__678712279 = UserId__158757552;
+actor {
+  stable cards :
+    {
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?SportCard__1018253845]];
+      var elementIndex : Nat__490723111
+    };
+  stable var nextCardId : Nat;
+  stable var nextPriceId : Nat;
+  stable portfolioSnapshots :
+    {
+      var root :
+        Node__46230540<Principal,
+                        List__415060402<PortfolioSnapshot__588235282>>;
+      var size : Nat__490723111
+    };
+  stable priceHistory :
+    {
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?PriceEntry__827917434]];
+      var elementIndex : Nat__490723111
+    }
+};

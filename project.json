@@ -1,0 +1,20 @@
+{
+  "overview": "A sports card collection tracker dashboard where you can add cards, track their purchase price and current estimated value, view price history trends, and see your full portfolio's total worth and gain/loss at a glance.",
+  "features": [
+    "Add cards with player, sport, team, year, condition, purchase price, and current value",
+    "Track price history per card with line charts showing value over time",
+    "Portfolio dashboard with total cards, cost, current value, and gain/loss",
+    "Searchable and filterable card list with sorting",
+    "Card detail view with price history and editing",
+    "Secure login with Internet Identity"
+  ],
+  "category": "productivity",
+  "tags": [
+    "sports-cards",
+    "collection-tracker",
+    "portfolio",
+    "price-tracking",
+    "dashboard"
+  ],
+  "last_updated": "2026-04-16T01:07:09.659Z"
+}
